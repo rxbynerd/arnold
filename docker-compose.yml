@@ -1,0 +1,13 @@
+version: '3'
+services:
+  db:
+    image: postgres:13
+    environment:
+      POSTGRES_HOST_AUTH_METHOD: trust
+  app:
+    build: .
+    depends_on:
+    - db
+    environment:
+      DATABASE_URL: postgresql://postgres@db/arnold_test
+      ARNOLD_ENV: test
