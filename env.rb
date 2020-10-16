@@ -22,5 +22,7 @@ end
 
 Bundler.require Arnold.env.to_sym
 
+require Arnold.root.join('config', 'activerecord')
+
 $:.unshift Arnold.root.join('lib').to_s
 require 'arnold'
