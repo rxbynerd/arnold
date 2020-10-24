@@ -8,7 +8,7 @@ Bundler.require
 module Arnold
   class << self
     @@root = Pathname.new File.expand_path File.dirname __FILE__
-    @@env = (ENV['ARNOLD_ENV'] || ENV['RAILS_ENV'] || 'development').clone.freeze
+    @@env = ActiveSupport::StringInquirer.new (ENV['ARNOLD_ENV'] || ENV['RAILS_ENV'] || 'development').clone.freeze
 
     def root
       @@root
