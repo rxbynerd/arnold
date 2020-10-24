@@ -16,7 +16,7 @@ class Arnold::App < Sinatra::Base
   end
 
   get "/" do
-    "arnold"
+    "arnold (#{Arnold::Feature.count} features)"
   end
 
   get "/healthz" do
