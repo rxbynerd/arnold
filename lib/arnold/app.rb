@@ -2,6 +2,12 @@ class Arnold::App < Sinatra::Base
   before do
     return if request.path == "/healthz"
 
+    if Arnold.env.development?
+      @email = 'development@ghostworks.dev'
+
+      return
+    end
+
     begin
       @email = Arnold::IAPVerifier.verify(request.env["HTTP_X_GOOG_IAP_JWT_ASSERTION"])
     rescue
