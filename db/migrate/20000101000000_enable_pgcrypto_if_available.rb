@@ -7,7 +7,7 @@ class EnablePgcryptoIfAvailable < ActiveRecord::Migration[6.0]
     res = ActiveRecord::Base.connection.execute('select count(*) from pg_available_extensions where name = \'pgcrypto\'')
 
     if res.first['count'] > 0
-      ActiveRecord::Base.connection.execute('CREATE EXTENSION IF NOT EXISTS pg_crypto')
+      ActiveRecord::Base.connection.execute('CREATE EXTENSION IF NOT EXISTS pgcrypto')
     end
   end
 
