@@ -24,5 +24,7 @@ Bundler.require Arnold.env.to_sym
 
 require Arnold.root.join('config', 'activerecord')
 
+Oj.default_options = { mode: :compat }
+
 $:.unshift Arnold.root.join('lib').to_s
 require 'arnold'

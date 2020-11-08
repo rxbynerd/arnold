@@ -14,15 +14,30 @@ class Arnold::Determinator::FeatureSerializer
       name: @feature.name,
       identifier: @feature.identifier,
       bucket_type: @feature.bucket_type,
-      target_groups: serialize_target_groups,
       active: @feature.active,
-      overrides: serialize_overrides
-    }
+      target_groups: serialize_target_groups,
+      overrides: serialize_overrides,
+    }.merge(experiment_properties)
+  end
+
+  def experiment_properties
+    if @feature.variants.any?
+      {
+        variants: @feature.variants,
+      }
+    else
+      {}
+    end
   end
 
   private
   def serialize_target_groups
-    []
+    @feature.target_groups.map do |target_group|
+      {
+        rollout: target_group.rollout,
+        constraints: target_group.constraints, # TODO unfuck
+      }
+    end
   end
 
   def serialize_overrides

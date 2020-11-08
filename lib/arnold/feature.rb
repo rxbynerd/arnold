@@ -1,5 +1,6 @@
 class Arnold::Feature < Arnold::Model
   has_many :overrides
+  has_many :target_groups
 
   enum bucket_type: %i{id guid}
 

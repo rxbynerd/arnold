@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_16_224258) do
+ActiveRecord::Schema.define(version: 2020_11_05_001532) do
 
   create_table "features", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "identifier", null: false
@@ -34,5 +34,14 @@ ActiveRecord::Schema.define(version: 2020_09_16_224258) do
     t.index ["feature_id"], name: "overrides_auto_index_fk_rails_57a53cb7b8"
   end
 
+  create_table "target_groups", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "feature_id"
+    t.bigint "rollout", default: 0, null: false
+    t.jsonb "constraints"
+    t.index ["feature_id"], name: "index_target_groups_on_feature_id"
+    t.index ["feature_id"], name: "target_groups_auto_index_fk_rails_20fff3224f"
+  end
+
   add_foreign_key "overrides", "features"
+  add_foreign_key "target_groups", "features"
 end
