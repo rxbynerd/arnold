@@ -1,6 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
+import "tailwindcss/tailwind.css";
+
+import TailwindExample from './TailwindExample';
+
 ReactDOM.render((
-  <h1>Hello from React!</h1>
+  <TailwindExample />
 ), document.getElementById('react-wrapper'))
