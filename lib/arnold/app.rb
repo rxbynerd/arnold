@@ -1,4 +1,7 @@
 class Arnold::App < Sinatra::Base
+  set :public_folder, Arnold.root.join(*%w{lib arnold app public})
+  set :views, Arnold.root.join(*%w{lib arnold app views})
+
   before do
     return if request.path == "/healthz"
 
@@ -16,7 +19,8 @@ class Arnold::App < Sinatra::Base
   end
 
   get "/" do
-    "arnold (#{Arnold::Feature.count} features)"
+    # "arnold (#{Arnold::Feature.count} features)"
+    erb :react
   end
 
   get "/healthz" do
