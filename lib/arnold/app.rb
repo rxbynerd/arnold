@@ -23,6 +23,10 @@ class Arnold::App < Sinatra::Base
     erb :react
   end
 
+  get "/tailwind-example" do
+    erb :react
+  end
+
   get "/healthz" do
     halt 200
   end
