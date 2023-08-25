@@ -1,0 +1,67 @@
+name: Build Arnold & publish to GitHub Packages
+on:
+  push:
+    branches: ["main"]
+
+env:
+  IMAGE_BIP_NAME: ghcr.io/ghostworks/arnold
+  IMAGE_NAME: arnold
+
+permissions:
+  id-token: write
+  contents: read
+  packages: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    name: "Build & push to GitHub"
+
+    outputs:
+      ghcr_image: ${{ steps.ghcr_push.outputs.ghcr_image }}
+      image_version: ${{ steps.ghcr_push.outputs.image_version }}
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+
+      - name: Build with Buildx
+        uses: docker/build-push-action@v3
+        with:
+          context: .
+          load: true
+          push: false
+          tags: ghcr.io/ghostworks/arnold_build
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+          labels: |
+            org.opencontainers.image.revision=${{ github.sha }}
+          build-args: |
+            COMMIT_SHA=${{ github.sha }}
+
+      # TODO: run tests/pre-push (i.e. confirm boot) checks on container
+
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v2
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Re-tag & push Docker image to ghcr.io
+        id: ghcr_push
+        run: |
+          GHCR_IMAGE_ID=ghcr.io/${{ github.repository_owner }}/$IMAGE_NAME
+          VERSION=$GITHUB_SHA
+          # Default version to latest when no commit SHA given
+          [ "$VERSION" == "" ] && VERSION=latest
+          echo "::debug:GHCR_IMAGE_ID=$GHCR_IMAGE_ID"
+          echo "::debug:VERSION=$VERSION"
+
+          echo "ghcr_image=$GHCR_IMAGE_ID:$VERSION" >> $GITHUB_OUTPUT
+          echo "image_version=$VERSION" >> $GITHUB_OUTPUT
+
+          docker tag $IMAGE_BIP_NAME $GHCR_IMAGE_ID:$VERSION
+          docker push $GHCR_IMAGE_ID:$VERSION
