@@ -4,7 +4,7 @@ on:
     branches: ["main"]
 
 env:
-  IMAGE_BIP_NAME: ghcr.io/ghostworks/arnold
+  IMAGE_BIP_NAME: ghcr.io/ghostworks/arnold_build
   IMAGE_NAME: arnold
 
 permissions:
