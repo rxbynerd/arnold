@@ -1,0 +1,14 @@
+version: 2
+updates:
+- package-ecosystem: bundler
+  directory: "/"
+  schedule:
+    interval: daily
+  groups:
+    all-gems:
+      patterns:
+      - "*"
+- package-ecosystem: docker
+  directory: "/"
+  schedule:
+    interval: weekly
