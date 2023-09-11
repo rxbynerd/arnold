@@ -8,10 +8,10 @@ gem 'diplomat', '~> 2.6', '>= 2.6.4'
 gem 'http', '~> 5.1', '>= 5.1.1'
 gem 'jwt', '~> 2.7', '>= 2.7.1'
 
-gem 'activerecord', '~> 7.0', '>= 7.0.7.2', require: 'active_record'
-gem 'pg', '~> 1.5', '>= 1.5.3'
+gem 'activerecord', '~> 7.0', require: 'active_record'
+gem 'pg', '~> 1.5'
 
-gem 'oj', '~> 3.10', '>= 3.10.15'
+gem 'oj', '~> 3.16'
 
 group :test do
   gem 'rspec', '~> 3.12', '>= 3.12.0'
