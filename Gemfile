@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'sinatra', '~> 3.1', '>= 3.1.0', require: 'sinatra/base'
-gem 'puma', '~> 6.3', '>= 6.3.1', require: false
+gem 'puma', '~> 6.4', require: false
 gem 'pry', '~> 0.13', '>= 0.14.2', require: false
 
 gem 'diplomat', '~> 2.6', '>= 2.6.4'
