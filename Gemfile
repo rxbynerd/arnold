@@ -8,7 +8,7 @@ gem 'diplomat', '~> 2.6', '>= 2.6.4'
 gem 'http', '~> 5.1', '>= 5.1.1'
 gem 'jwt', '~> 2.7', '>= 2.7.1'
 
-gem 'activerecord', '~> 7.0', require: 'active_record'
+gem 'activerecord', '~> 7.1', require: 'active_record'
 gem 'pg', '~> 1.5'
 
 gem 'oj', '~> 3.16'
