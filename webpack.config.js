@@ -10,7 +10,7 @@ export default {
     filename: 'bundle.js',
   },
   resolve: {
-    extensions: ['.tsx', '.ts', '.jsx', '.js'],
+    extensions: ['.tsx', '.ts', '.jsx', '.js', '.css', '.json'],
   },
   mode: isProduction ? 'production' : 'development',
   module: {
@@ -19,6 +19,11 @@ export default {
         test: /\.(tsx|ts)$/,
         exclude: /node_modules/,
         loader: 'babel-loader'
+      },
+      {
+        test: /\.css$/i,
+        exclude: /node_modules/,
+        use: ['style-loader', 'css-loader']
       }
     ]
   }
