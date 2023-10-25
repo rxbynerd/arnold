@@ -2,12 +2,9 @@
   "name": "arnold",
   "version": "0.1.0",
   "private": true,
-  "main": "index.js",
-  "directories": {
-    "lib": "lib"
-  },
   "scripts": {
-    "build": "webpack --config webpack.config.js"
+    "build": "webpack --config webpack.config.js",
+    "watch": "webpack --config webpack.config.js --watch"
   },
   "author": "@rubynerd",
   "type": "module",
