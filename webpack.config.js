@@ -4,7 +4,7 @@ import { fileURLToPath } from 'url';
 const isProduction = process.env.NODE_ENV === 'production';
 
 export default {
-  entry: './ui/index.ts',
+  entry: './ui/index.tsx',
   output: {
     path: path.resolve(path.dirname(fileURLToPath(import.meta.url)), 'lib', 'arnold', 'app', 'public'),
     filename: 'bundle.js',
