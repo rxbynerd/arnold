@@ -1,0 +1,23 @@
+{
+  "name": "arnold",
+  "version": "0.1.0",
+  "private": true,
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "build": "webpack --config webpack.config.js"
+  },
+  "author": "@rubynerd",
+  "type": "module",
+  "license": "Apache 2.0",
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "webpack": "^5.89.0"
+  },
+  "devDependencies": {
+    "webpack-cli": "^5.1.4"
+  }
+}

@@ -1,1 +1,3 @@
 tmp
+node_modules
+lib/arnold/app/public/bundle.js
