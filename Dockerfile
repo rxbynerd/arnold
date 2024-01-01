@@ -1,4 +1,4 @@
-FROM ruby:3.2.2
+FROM ruby:3.3.0
 LABEL maintainer="luke@ghostworks.io"
 
 RUN gem install bundler -v '~> 2'
